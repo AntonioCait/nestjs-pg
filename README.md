@@ -26,6 +26,11 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Run docker db
+```
+$ docker run --name postgress-users -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=postgress-users -p 5432:5432 -d postgres
+```
+
 ## Test
 
 ```bash
