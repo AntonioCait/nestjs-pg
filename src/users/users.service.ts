@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MongoNetworkTimeoutError, Repository } from 'typeorm';
 import { User } from 'src/entities/user.entity';
 
 @Injectable()
@@ -26,5 +26,10 @@ export class UsersService {
     const newUser = this.UsersRepository.create(userData);
     await this.UsersRepository.save(newUser);
     return newUser;
+  }
+
+  async updateUser(id: number, userData: Partial<User>): Promise<User> {
+    await this.UsersRepository.update(id, userData);
+    return this.findOne(id);
   }
 }
